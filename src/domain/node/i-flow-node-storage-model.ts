@@ -13,4 +13,6 @@ export interface IFlowNodeStorageModel {
 
   position: IPoint;
 
+  data?: any;
+
 }
