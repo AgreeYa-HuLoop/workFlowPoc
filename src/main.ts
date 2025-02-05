@@ -1,12 +1,17 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Component } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { FlowComponent } from './components/flow/flow.component';
 
-import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
-
-if (environment.production) {
-  enableProdMode();
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  template: `<visual-programming-flow></visual-programming-flow>`,
+  imports: [
+    FlowComponent
+  ]
+})
+export class App {
+  name = 'Angular';
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(App);
