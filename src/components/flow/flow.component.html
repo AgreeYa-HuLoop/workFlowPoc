@@ -51,3 +51,46 @@
   <f-minimap [fMinSize]="1000"></f-minimap>
 </f-flow>
 <visual-programming-toolbar></visual-programming-toolbar>
+
+<button class="btn btn-primary d-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" #openForm>Open Form </button>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">From Details</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    @if(selectedNode?.data.length > 0)
+    {
+      <form>
+        @for(field of selectedNode?.data;track field)
+        {
+          <div class="my-3">
+            @if(field.type == 'text')
+            {
+              <div>
+                <label for=""> {{ field.title}}</label>
+                <input type="text" class="form-control" [(ngModel)]="field.value" [ngModelOptions]="{standalone: true}">
+              </div>
+            }
+            @if(field.type == 'select')
+            { 
+              <div>
+                <label for=""> {{ field.title}}</label>
+                <select name="" id="" [(ngModel)]="field.value" class="form-select" [ngModelOptions]="{standalone: true}">
+                  <!-- @for(item of field.suggestions;track item)
+                  {
+                    <option>{{item}}</option>
+                  } -->
+                  <option *ngFor="let item of field.suggestions">{{item}}</option>
+                </select>
+              </div>
+            }
+
+          </div>
+        }
+
+      </form>
+    }
+  </div>
+</div>

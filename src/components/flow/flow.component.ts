@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component, OnInit,
+  Component, ElementRef, OnInit,
   ViewChild,
 } from '@angular/core';
 import {
@@ -16,6 +16,8 @@ import { PaletteComponent } from '../palette/palette.component';
 import { NodeComponent } from '../node/node.component';
 import { FlowService } from '../../domain/flow.service';
 import { IFlowViewModel } from '../../domain/i-flow-view-model';
+import { FormsModule } from '@angular/forms'; 
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'visual-programming-flow',
@@ -30,10 +32,15 @@ import { IFlowViewModel } from '../../domain/i-flow-view-model';
     FFlowModule,
     ToolbarComponent,
     PaletteComponent,
-    NodeComponent
+    NodeComponent,
+    FormsModule,
+    CommonModule
   ]
 })
 export class FlowComponent implements OnInit {
+
+  @ViewChild("openForm") openForm: ElementRef | undefined;
+  selectedNode: any;
 
   protected viewModel: IFlowViewModel = {
     nodes: [],
@@ -93,6 +100,11 @@ export class FlowComponent implements OnInit {
   }
   currentNode(value:any){
     console.log(value);
-    
+    this.selectedNode = value;
+    if(this.selectedNode?.data?.length > 0)
+    {
+      this.openForm?.nativeElement.click();
+    }
+
   }
 }
