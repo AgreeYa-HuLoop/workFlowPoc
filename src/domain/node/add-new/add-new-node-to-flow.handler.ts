@@ -14,13 +14,22 @@ export class AddNewNodeToFlowHandler implements IHandler<AddNewNodeToFlowRequest
 
     let formData = FORM_CONFIGURATION[request.type] ? FORM_CONFIGURATION[request.type] : [];
 
-    this.flow.nodes.push({
+    let nodeObj: any = {
       id: GuidExtensions.generate(),
-      input: GuidExtensions.generate(),
-      output: GuidExtensions.generate(),
       type: request.type,
       position: request.position,
       data: formData
-    });
+    }
+
+    if(request.type != 'Start')
+    {
+      nodeObj.input = GuidExtensions.generate()
+    }
+
+    if (request.type != 'end') {
+      nodeObj.output = GuidExtensions.generate()
+    }
+
+    this.flow.nodes.push(nodeObj);
   }
 }

@@ -1,7 +1,7 @@
 
 
 export const FORM_CONFIGURATION: any = {
-    Task: [
+    'Task-1': [
       {
         title: 'First Name',
         type: "text",
@@ -24,7 +24,7 @@ export const FORM_CONFIGURATION: any = {
         suggestions: ["Male", "Female"]
       },
     ],
-    Decision : [
+    'Task-2' : [
       {
         title: 'Pan number',
         type: "text",

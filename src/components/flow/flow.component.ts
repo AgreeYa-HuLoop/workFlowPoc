@@ -86,6 +86,7 @@ export class FlowComponent implements OnInit {
 
   public onConnectionAdded(event: FCreateConnectionEvent): void {
     if (!event.fInputId) {
+      alert("Start node won't accept input");
       return;
     }
     this.apiService.addConnection(event.fOutputId, event.fInputId);

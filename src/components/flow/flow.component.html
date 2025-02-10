@@ -9,7 +9,7 @@
   </f-background>
   <f-line-alignment></f-line-alignment>
   <f-canvas fZoom>
-    <f-connection-for-create fBehavior="fixed" fType="straight">
+    <f-connection-for-create fBehavior="floating" fType="straight">
       <svg viewBox="0 0 10 10" fMarker [type]="eMarkerType.START" [height]="10" [width]="10" [refX]="5" [refY]="5">
         <circle cx="5" cy="5" r="2" stroke="none" fill="var(--primary-3)"></circle>
       </svg>
@@ -18,7 +18,7 @@
       </svg>
     </f-connection-for-create>
     @for (connection of viewModel.connections;track connection) {
-      <f-connection fBehavior="fixed"
+      <f-connection fBehavior="floating"
                      fType="straight"
                     [fText]="connection.text"
                     [fStartColor]="connection.color1" [fEndColor]="connection.color2"
@@ -38,7 +38,7 @@
         </svg>
       </f-connection>
     }
-    @for (node of viewModel.nodes;track node.nodeId) {
+    @for (node of viewModel.nodes;track node) {
       <visual-programming-node [node]="node"
                                fNode
                                fDragHandle
@@ -48,7 +48,6 @@
     }
   </f-canvas>
   <f-selection-area></f-selection-area>
-  <f-minimap [fMinSize]="1000"></f-minimap>
 </f-flow>
 <visual-programming-toolbar></visual-programming-toolbar>
 
