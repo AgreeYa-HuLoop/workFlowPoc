@@ -14,8 +14,12 @@ export class AddNewNodeToFlowHandler implements IHandler<AddNewNodeToFlowRequest
 
     let formData = FORM_CONFIGURATION[request.type] ? FORM_CONFIGURATION[request.type] : [];
 
+
     let nodeObj: any = {
-      id: GuidExtensions.generate(),
+      nodeId: GuidExtensions.generate(),
+      workflowId:'gou4515-5386-4ashu-8f77-214efbbe54b2',
+      // input: GuidExtensions.generate(),
+      // output: GuidExtensions.generate(),
       type: request.type,
       position: request.position,
       data: formData

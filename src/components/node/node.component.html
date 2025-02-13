@@ -2,12 +2,17 @@
   <div class="selected-background"></div>
   <div [class]="getShape(node)" [style.border-color]="node.color" [style.color]="node.color" >
     @if (node.output) {
-      <div fNodeOutput [fOutputMultiple]="true" [fOutputId]="node.output!"></div>
+      <div fNodeOutput [fOutputMultiple]="false" [fOutputId]="node.output!"></div>
+      <div fNodeOutlet></div>
+    }
+    @if (node.output && node.type=='Start') {
+      <div fNodeOutput [fOutputMultiple]="false" [fOutputId]="node.output!" class="right"></div>
       <div fNodeOutlet></div>
     }
     @if (node.input) {
       <div fNodeInput [fInputMultiple]="true" [fInputId]="node.input"></div>
     }
+    
     <div class="icon">
       {{ node.type }}
     </div>

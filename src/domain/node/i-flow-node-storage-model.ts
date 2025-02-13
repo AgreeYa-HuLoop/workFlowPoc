@@ -3,7 +3,7 @@ import { IPoint } from '@foblex/core';
 
 export interface IFlowNodeStorageModel {
 
-  id: string;
+  nodeId: string;
 
   input?: string;
 

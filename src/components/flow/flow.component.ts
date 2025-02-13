@@ -7,7 +7,8 @@ import {
 import {
   FCreateNodeEvent, EFMarkerType,
   FCanvasComponent, FFlowModule, FZoomDirective,
-  FReassignConnectionEvent, FCreateConnectionEvent
+  FReassignConnectionEvent, FCreateConnectionEvent,
+  EFConnectableSide
 } from '@foblex/flow';
 import { IPoint, Point } from '@foblex/core';
 import { ENodeType } from '../../domain/e-node-type';
@@ -46,7 +47,8 @@ export class FlowComponent implements OnInit {
     nodes: [],
     connections: []
   };
-
+  public outputSide: EFConnectableSide = EFConnectableSide.RIGHT;
+  public inputSide: EFConnectableSide = EFConnectableSide.TOP;
   @ViewChild(FCanvasComponent, { static: true })
   public fCanvasComponent!: FCanvasComponent;
 
@@ -89,13 +91,13 @@ export class FlowComponent implements OnInit {
       alert("Start node won't accept input");
       return;
     }
-    this.apiService.addConnection(event.fOutputId, event.fInputId);
+    this.apiService.addConnection(event.fOutputId, event.fInputId ,this.viewModel);
     this.getData();
   }
 
   public onNodePositionChanged(point: IPoint, node: any): void {
     node.position = point;
-    this.apiService.moveNode(node.id, point);
+    this.apiService.moveNode(node.nodeId, point);
     console.log(this.viewModel);
     
   }
@@ -107,5 +109,17 @@ export class FlowComponent implements OnInit {
       this.openForm?.nativeElement.click();
     }
 
+  }
+
+  lineDrawMethod(connection:any){
+    console.log(connection);
+    if(connection.text=='Decision'){
+      return 'segment'
+    }
+    else{
+      return 'straight'
+    }
+   
+    
   }
 }

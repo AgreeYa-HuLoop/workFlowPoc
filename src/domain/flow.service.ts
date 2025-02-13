@@ -37,10 +37,10 @@ export class FlowService {
       new MoveNodeRequest(id, position)
     );
   }
-
-  public addConnection(outputId: string, inputId: string): void {
-    new CreateConnectionHandler(this.flow).handle(
-      new CreateConnectionRequest(outputId, inputId)
+ 
+  public addConnection(outputId: string, inputId: string, viewModel:any): void {
+    new CreateConnectionHandler(this.flow,viewModel).handle(
+      new CreateConnectionRequest(outputId, inputId),viewModel
     );
   }
 
