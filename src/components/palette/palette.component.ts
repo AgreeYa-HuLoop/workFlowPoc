@@ -4,6 +4,7 @@ import {
 import { FFlowModule } from '@foblex/flow';
 import { ENodeType } from '../../domain/e-node-type';
 import { NODE_CONFIGURATION } from '../../domain/configuration';
+import { FlowService } from '../../domain/flow.service';
 
 @Component({
   selector: 'visual-programming-palette',
@@ -17,6 +18,9 @@ import { NODE_CONFIGURATION } from '../../domain/configuration';
 })
 export class PaletteComponent {
 
+  constructor(private flowService: FlowService)
+  {}
+
   protected palette = Object.keys(NODE_CONFIGURATION).map((key) => {
     return {
       type: key,
@@ -27,7 +31,7 @@ export class PaletteComponent {
   });
 
   publish(){
-
+    console.log(this.flowService.getFlow());
   }
 
   Execute(){
