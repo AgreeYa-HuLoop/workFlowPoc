@@ -1,7 +1,7 @@
 
 
 export const FORM_CONFIGURATION: any = {
-    'Task-1': [
+    'Task': [
       {
         title: 'Name',
         type: "text",
@@ -76,7 +76,7 @@ export const FORM_CONFIGURATION: any = {
       },
      
     ],
-    end : [
+    End : [
       {
         title: 'End',
       },

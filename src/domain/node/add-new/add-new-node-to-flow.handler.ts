@@ -30,7 +30,7 @@ export class AddNewNodeToFlowHandler implements IHandler<AddNewNodeToFlowRequest
       nodeObj.input = GuidExtensions.generate()
     }
 
-    if (request.type != 'end') {
+    if (request.type != 'End') {
       nodeObj.output = GuidExtensions.generate()
     }
 

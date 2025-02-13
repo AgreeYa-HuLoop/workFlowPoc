@@ -21,9 +21,9 @@ export enum ENodeType {
 
   Input = 'Start',
 
-  Assign = 'Task-1',
+  Assign = 'Task',
 
   Task2 = 'Task-2',
 
-  End = 'end',
+  End = 'End',
 }

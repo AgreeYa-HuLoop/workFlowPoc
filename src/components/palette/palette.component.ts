@@ -25,4 +25,12 @@ export class PaletteComponent {
       conf:NODE_CONFIGURATION[ key as ENodeType ].config,
     }
   });
+
+  publish(){
+
+  }
+
+  Execute(){
+    
+  }
 }
