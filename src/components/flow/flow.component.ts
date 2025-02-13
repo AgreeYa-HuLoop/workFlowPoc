@@ -74,10 +74,26 @@ export class FlowComponent implements OnInit {
 
   private getData(): void {
     this.viewModel = this.apiService.getFlow();
+    console.log("View Model : ", this.viewModel)
     this.changeDetectorRef.markForCheck();
   }
 
   public onNodeAdded(event: FCreateNodeEvent): void {
+    let duplicateStartCheck = false;
+
+    this.viewModel.nodes.forEach((node)=>
+    {
+      if(node.type == 'Start' && event.data == 'Start')
+      {
+        duplicateStartCheck = true;
+      }
+    })
+
+    if(duplicateStartCheck)
+    {
+      alert("Multiple start nodes are not allowed ");
+      return;
+    }
     this.apiService.addNode(event.data as ENodeType, event.rect,this.generateWf);
     this.getData();
   }
