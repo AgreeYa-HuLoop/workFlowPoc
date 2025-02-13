@@ -6,6 +6,8 @@ export class AddNewNodeToFlowRequest {
   constructor(
     public readonly type: ENodeType,
     public readonly position: IPoint,
+    public readonly id: any,
+
   ) {
   }
 }

@@ -18,7 +18,7 @@ export class NodeComponent {
   public node: IFlowNodeViewModel | undefined;
 
   getShape(node:any){
-  if(node.type=='Start' || node.type=='end' ){
+  if(node.type=='Start' || node.type=='End' ){
     return 'interactive-node-body-1'
   }
   else if(node.type=='Decision'){

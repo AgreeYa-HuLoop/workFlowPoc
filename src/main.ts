@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { FlowComponent } from './components/flow/flow.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,10 @@ import { FlowComponent } from './components/flow/flow.component';
   imports: [
     FlowComponent
   ]
+  
 })
 export class App {
   name = 'Angular';
 }
 
-bootstrapApplication(App);
+bootstrapApplication(App,{providers: [provideHttpClient()]});

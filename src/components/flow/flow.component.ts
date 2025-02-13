@@ -10,7 +10,7 @@ import {
   FReassignConnectionEvent, FCreateConnectionEvent,
   EFConnectableSide
 } from '@foblex/flow';
-import { IPoint, Point } from '@foblex/core';
+import { GuidExtensions, IPoint, Point } from '@foblex/core';
 import { ENodeType } from '../../domain/e-node-type';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { PaletteComponent } from '../palette/palette.component';
@@ -42,7 +42,7 @@ export class FlowComponent implements OnInit {
 
   @ViewChild("openForm") openForm: ElementRef | undefined;
   selectedNode: any;
-
+   generateWf:any;
   protected viewModel: IFlowViewModel = {
     nodes: [],
     connections: []
@@ -64,6 +64,7 @@ export class FlowComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+    this.generateWf = GuidExtensions.generate(),
     this.getData();
   }
 
@@ -77,7 +78,7 @@ export class FlowComponent implements OnInit {
   }
 
   public onNodeAdded(event: FCreateNodeEvent): void {
-    this.apiService.addNode(event.data as ENodeType, event.rect);
+    this.apiService.addNode(event.data as ENodeType, event.rect,this.generateWf);
     this.getData();
   }
 

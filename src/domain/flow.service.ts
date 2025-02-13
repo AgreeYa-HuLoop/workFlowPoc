@@ -13,10 +13,15 @@ import { ReassignConnectionHandler } from './connection/reassign/reassign-connec
 import { ReassignConnectionRequest } from './connection/reassign/reassign-connection.request';
 import { CreateConnectionRequest } from './connection/add-new/create-connection.request';
 import { CreateConnectionHandler } from './connection/add-new/create-connection.handler';
+import { HttpClient } from '@angular/common/http';
 
-@Injectable()
+// @Injectable()
+@Injectable({   providedIn: 'root' // Ensures it's available throughout the app
+   })
 export class FlowService {
-
+  constructor(private http : HttpClient){
+  
+  }
   private flow: IFlowStorage = FLOW_STORAGE;
 
   public getFlow(): IFlowViewModel {
@@ -25,10 +30,10 @@ export class FlowService {
       connections: new MapToConnectionViewModelHandler(this.flow).handle(),
     }
   }
-
-  public addNode(type: ENodeType, position: IPoint): void {
+  // id:any
+  public addNode(type: ENodeType, position: IPoint,id:any): void {
     new AddNewNodeToFlowHandler(this.flow).handle(
-      new AddNewNodeToFlowRequest(type, position)
+      new AddNewNodeToFlowRequest(type, position,id)
     );
   }
 
@@ -48,5 +53,9 @@ export class FlowService {
     new ReassignConnectionHandler(this.flow).handle(
       new ReassignConnectionRequest(outputId, oldInputId, newInputId)
     );
+  }
+  
+  publishWf(body:any){
+    return this.http.post('http://locahost:9191/workflow/node/add',body)
   }
 }
